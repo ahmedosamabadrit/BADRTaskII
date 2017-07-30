@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">BADRTaskII</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="item_2">map</string>
+    <string name="item_1">List</string>
+
+    <!--Message for the users-->
+    <string name="wrong_data_message">You entered invalid data =( </string>
+    <string name="wrong_data_title">Something wrong</string>
+
+    <string name="network_connection_error_message">There is not internet connection please check you WIFI</string>
+    <string name="network_connection_error_title">Connection  error</string>
+
+    <!--Item List of the user text values-->
+    <string name="user_gender">Gender</string>
+    <string name="user_email">email</string>
+    <string name="user_name">User\'s Name</string>
+</resources>
