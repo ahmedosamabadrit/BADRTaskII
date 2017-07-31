@@ -25,22 +25,12 @@ public class CustomAdapter  extends ArrayAdapter<Result>{
     private Result User;
     @BindView(R.id.listNameID)
     TextView userName;
-
-    @BindView(R.id.listStartTimeID)
-    TextView userGender;
-
-    @BindView(R.id.listEndTimeID)
-    TextView userDOB;
-
-    @BindView(R.id.listImageID)
-    ImageView userimage;
-
-    public CustomAdapter(Context context, List<Result> tasks) {
+    public CustomAdapter(Context context, List<Result> Users) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for two TextViews and an ImageView, the adapter is not
         // going to use this second argument, so it can be any value. Here, we used 0.
-        super(context, 0, tasks);
+        super(context, 0, Users);
         this.context = context;
     }
 
@@ -54,10 +44,15 @@ public class CustomAdapter  extends ArrayAdapter<Result>{
 
         User = getItem(position);
 
+        TextView userName = (TextView) stepsList.findViewById(R.id.listNameID);
+        TextView userGender = (TextView) stepsList.findViewById(R.id.listStartTimeID);
+        TextView userDOB = (TextView) stepsList.findViewById(R.id.listEndTimeID);
+
         userName.setText(User.getName().getTitle() + " " + User.getName().getFirst() + " " + User.getName().getLast());
         userGender.setText(User.getGender());
         userDOB.setText(User.getDob());
 
+        ImageView userimage = (ImageView) stepsList.findViewById(R.id.listImageID);
         Glide.with(getContext()).load(User.getPicture().getMedium()).into(userimage);
 
         return stepsList;

@@ -6,4 +6,4 @@ package com.badr.learningtrack.badrtaskii.home.interfaces;
 
 public interface HomePresenter {
     public void readyToGO(Boolean internetStatus);
-}
+    }

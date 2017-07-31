@@ -1,4 +1,4 @@
-package com.badr.learningtrack.badrtaskii.model.networkmanager;
+package com.badr.learningtrack.badrtaskii.model.networkmanager.Interface;
 
 import com.badr.learningtrack.badrtaskii.model.pojos.UsersResponse;
 

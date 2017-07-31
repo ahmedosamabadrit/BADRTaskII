@@ -3,7 +3,9 @@ package com.badr.learningtrack.badrtaskii.model.networkmanager;
 import android.util.Log;
 
 import com.badr.learningtrack.badrtaskii.home.interfaces.OnCallFinishedListener;
+import com.badr.learningtrack.badrtaskii.model.networkmanager.Interface.UsersAPI;
 import com.badr.learningtrack.badrtaskii.model.pojos.UsersResponse;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,20 +21,19 @@ public class NetWorkManager {
     public static final int NUMBER_OF_USERS = 100;
     private UsersAPI getAPI;
 
-    //create an object of SingleObject
-    private static NetWorkManager instance = null;
+//    //create an object of SingleObject
+//    private static NetWorkManager instance = null;
 
-    //make the constructor private so that this class cannot be
-    //instantiated
-    private NetWorkManager() {
-    }
-
-    //Get the only object available
-    public static NetWorkManager getInstance() {
-        if (instance == null) instance = new NetWorkManager();
-        return instance;
-    }
-
+//    //make the constructor private so that this class cannot be
+//    //instantiated
+//    private NetWorkManager() {
+//    }
+//
+//    //Get the only object available
+//    public static NetWorkManager getInstance() {
+//        if (instance == null) instance = new NetWorkManager();
+//        return instance;
+//    }
 
     public void getDataFromAPI(final OnCallFinishedListener callBack) {
         Retrofit retrofit = new Retrofit.Builder()

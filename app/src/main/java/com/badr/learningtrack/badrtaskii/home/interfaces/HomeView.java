@@ -11,5 +11,6 @@ import java.util.ArrayList;
 public interface HomeView {
 
     public void showUsersData(ArrayList<Result> usersList);
-    public ArrayList<Result> getListOfUsers();
+    public void showProgressDialog();
+    public void HideProgressDialog();
 }

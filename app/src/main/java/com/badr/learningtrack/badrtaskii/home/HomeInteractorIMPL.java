@@ -4,16 +4,19 @@ import com.badr.learningtrack.badrtaskii.home.interfaces.HomeInteractor;
 import com.badr.learningtrack.badrtaskii.home.interfaces.OnCallFinishedListener;
 import com.badr.learningtrack.badrtaskii.model.networkmanager.NetWorkManager;
 
+import javax.inject.Inject;
+
 /**
  * Created by ahmed-osama on 30/07/17.
  */
 
 public class HomeInteractorIMPL implements HomeInteractor {
 
-    private NetWorkManager networkmanager;
+    @Inject
+    NetWorkManager networkmanager;
 
     public HomeInteractorIMPL() {
-        networkmanager = NetWorkManager.getInstance();
+//        networkmanager = NetWorkManager.getInstance();
     }
 
     @Override

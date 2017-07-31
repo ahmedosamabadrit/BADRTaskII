@@ -43,6 +43,8 @@ public class Result {
     @Expose
     private String nat;
 
+    private int usersID;
+
     public String getGender() {
         return gender;
     }
@@ -139,4 +141,11 @@ public class Result {
         this.nat = nat;
     }
 
+    public int getUsersID() {
+        return usersID;
+    }
+
+    public void setUsersID(int usersID) {
+        this.usersID = usersID;
+    }
 }
