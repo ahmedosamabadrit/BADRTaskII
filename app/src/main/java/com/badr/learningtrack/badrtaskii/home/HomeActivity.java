@@ -1,12 +1,14 @@
 package com.badr.learningtrack.badrtaskii.home;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.badr.learningtrack.badrtaskii.R;
@@ -19,9 +21,13 @@ import com.badr.learningtrack.badrtaskii.home.interfaces.HomeView;
 import com.badr.learningtrack.badrtaskii.home.module.HomeModule;
 import com.badr.learningtrack.badrtaskii.model.pojos.Result;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
+
+import me.kartikarora.potato.Potato;
+
+import static android.provider.Settings.ACTION_SETTINGS;
 
 public class HomeActivity extends AppCompatActivity implements HomeView {
 
@@ -35,13 +41,12 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
     @Inject
     AlertDialogManager custom_alertDialog_interface;
 
-
     // flag for network status
     private boolean isInternetPresent = false;
 
     private ProgressDialog pDialog;
 
-    private ArrayList<Result> users;
+    private List<Result> users;
 
     private ListFragment first_fragment;
 
@@ -52,7 +57,7 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
 
         /// There two way to pass the view throw and a conestractour
         DaggerHomeComponent.builder()
-                .homeModule(new HomeModule(getApplicationContext(),this))
+                .homeModule(new HomeModule(getApplicationContext(), this))
                 .build()
                 .inject(this);
 
@@ -64,12 +69,9 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
         isInternetPresent = cd.isConnectingToInternet();
 
         if (!isInternetPresent) {
-            custom_alertDialog_interface.showAlertDialog(this, getString(R.string.network_connection_error_title), getString(R.string.network_connection_error_message), false);
+            Potato.potate(this).Notifications().showNotificationDefaultSound(getString(R.string.network_connection_error_title), getString(R.string.network_connection_error_message),R.id.icon_only,new Intent(ACTION_SETTINGS));
         }
-        /// Showing the progress Dialog.
-        showProgressDialog();
-
-        // pas the value of the connection to the presenter.
+        Log.i("Hello", "View is ready to go ------- 1 ");
         presenter.readyToGO(isInternetPresent);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
@@ -104,18 +106,24 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
 
     /// This method will be call
     @Override
-    public void showUsersData(ArrayList<Result> usersList) {
+    public void showUsersData(List<Result> usersList) {
         users = usersList;
         first_fragment.setUsers(users);
     }
 
     @Override
     public void showProgressDialog() {
+        Log.i("Hello", "Showing progress bar ----- 3");
         pDialog.show();
     }
 
     @Override
     public void HideProgressDialog() {
         pDialog.hide();
+    }
+
+    @Override
+    public void showAlert(String Title, String Message) {
+        custom_alertDialog_interface.showAlertDialog(this, Title, Message, false);
     }
 }

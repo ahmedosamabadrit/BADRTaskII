@@ -1,10 +1,14 @@
-package com.badr.learningtrack.badrtaskii.model.networkmanager;
+package com.badr.learningtrack.badrtaskii.model.DAO.api_services;
 
 import android.util.Log;
 
-import com.badr.learningtrack.badrtaskii.home.interfaces.OnCallFinishedListener;
-import com.badr.learningtrack.badrtaskii.model.networkmanager.Interface.UsersAPI;
+import com.badr.learningtrack.badrtaskii.home.listeners.OnCallFinishedLisener;
+import com.badr.learningtrack.badrtaskii.model.DAO.api_services.Interface.UsersAPI;
+import com.badr.learningtrack.badrtaskii.model.DAO.database.DataBaseManager;
+import com.badr.learningtrack.badrtaskii.model.pojos.Result;
 import com.badr.learningtrack.badrtaskii.model.pojos.UsersResponse;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,24 +22,31 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetWorkManager {
 
+    private List<Result> data;
+
+    DataBaseManager dataBaseManager;
+
     public static final int NUMBER_OF_USERS = 100;
+
     private UsersAPI getAPI;
 
-//    //create an object of SingleObject
-//    private static NetWorkManager instance = null;
+    //create an object of SingleObject
+    private static NetWorkManager instance = null;
 
-//    //make the constructor private so that this class cannot be
-//    //instantiated
-//    private NetWorkManager() {
-//    }
-//
-//    //Get the only object available
-//    public static NetWorkManager getInstance() {
-//        if (instance == null) instance = new NetWorkManager();
-//        return instance;
-//    }
+    //make the constructor private so that this class cannot be
+    //instantiated
+    private NetWorkManager() {
+        dataBaseManager = new DataBaseManager();
+    }
 
-    public void getDataFromAPI(final OnCallFinishedListener callBack) {
+    //Get the only object available
+    public static NetWorkManager getInstance() {
+        if (instance == null) instance = new NetWorkManager();
+        return instance;
+    }
+
+    public void getDataFromAPI(final OnCallFinishedLisener callBack) {
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://randomuser.me/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -55,7 +66,10 @@ public class NetWorkManager {
                     }
                 } else {
                     Log.i("onResponse", "There is a data");
+                    Log.i("Hello", "network pass the api service data into database manger and pass the call back from the presenter to the API manager----- 6");
+
                     callBack.onSuccess(response.body().getResults());
+                    dataBaseManager.saveData(response.body().getResults());
                 }
             }
 

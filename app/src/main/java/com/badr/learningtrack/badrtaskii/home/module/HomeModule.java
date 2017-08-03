@@ -4,11 +4,11 @@ import android.content.Context;
 
 import com.badr.learningtrack.badrtaskii.home.ConnectionDetector;
 import com.badr.learningtrack.badrtaskii.home.HomeInteractorIMPL;
+import com.badr.learningtrack.badrtaskii.home.HomePresenterIMPL;
 import com.badr.learningtrack.badrtaskii.home.dialogs.AlertDialogManager;
 import com.badr.learningtrack.badrtaskii.home.interfaces.HomeInteractor;
 import com.badr.learningtrack.badrtaskii.home.interfaces.HomePresenter;
 import com.badr.learningtrack.badrtaskii.home.interfaces.HomeView;
-import com.badr.learningtrack.badrtaskii.home.presenter.HomePresenterIMPL;
 
 import dagger.Module;
 import dagger.Provides;

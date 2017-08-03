@@ -1,4 +1,4 @@
-package com.badr.learningtrack.badrtaskii.model.networkmanager.Interface;
+package com.badr.learningtrack.badrtaskii.model.DAO.api_services.Interface;
 
 import com.badr.learningtrack.badrtaskii.model.pojos.UsersResponse;
 

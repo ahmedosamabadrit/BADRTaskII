@@ -13,6 +13,7 @@ import com.badr.learningtrack.badrtaskii.home.adapter.CustomAdapter;
 import com.badr.learningtrack.badrtaskii.model.pojos.Result;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,7 +61,7 @@ public class ListFragment extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
-    public void setUsers(ArrayList<Result> users)
+    public void setUsers(List<Result> users)
     {
         Log.i("Hello"," "+users.size());
         userList.clear();

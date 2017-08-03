@@ -4,148 +4,79 @@ package com.badr.learningtrack.badrtaskii.model.pojos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.RealmClass;
+import lombok.Getter;
+import lombok.Setter;
+
+@RealmClass
+public class Result extends RealmObject {
 
     @SerializedName("gender")
     @Expose
+    @Setter
+    @Getter
     private String gender;
     @SerializedName("name")
     @Expose
+    @Setter
+    @Getter
     private Name name;
     @SerializedName("location")
     @Expose
+    @Setter
+    @Getter
     private Location location;
     @SerializedName("email")
     @Expose
+    @Setter
+    @Getter
     private String email;
     @SerializedName("login")
     @Expose
+    @Setter
+    @Getter
     private Login login;
     @SerializedName("dob")
     @Expose
+    @Setter
+    @Getter
     private String dob;
     @SerializedName("registered")
     @Expose
+    @Setter
+    @Getter
     private String registered;
     @SerializedName("phone")
     @Expose
+    @Setter
+    @Getter
     private String phone;
     @SerializedName("cell")
     @Expose
+    @Setter
+    @Getter
     private String cell;
     @SerializedName("id")
     @Expose
+    @Setter
+    @Getter
     private Id id;
     @SerializedName("picture")
     @Expose
+    @Setter
+    @Getter
     private Picture picture;
     @SerializedName("nat")
     @Expose
+    @Setter
+    @Getter
     private String nat;
 
+    @PrimaryKey
+    @Expose
+    @Setter
+    @Getter
     private int usersID;
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    public void setName(Name name) {
-        this.name = name;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Login getLogin() {
-        return login;
-    }
-
-    public void setLogin(Login login) {
-        this.login = login;
-    }
-
-    public String getDob() {
-        return dob;
-    }
-
-    public void setDob(String dob) {
-        this.dob = dob;
-    }
-
-    public String getRegistered() {
-        return registered;
-    }
-
-    public void setRegistered(String registered) {
-        this.registered = registered;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getCell() {
-        return cell;
-    }
-
-    public void setCell(String cell) {
-        this.cell = cell;
-    }
-
-    public Id getId() {
-        return id;
-    }
-
-    public void setId(Id id) {
-        this.id = id;
-    }
-
-    public Picture getPicture() {
-        return picture;
-    }
-
-    public void setPicture(Picture picture) {
-        this.picture = picture;
-    }
-
-    public String getNat() {
-        return nat;
-    }
-
-    public void setNat(String nat) {
-        this.nat = nat;
-    }
-
-    public int getUsersID() {
-        return usersID;
-    }
-
-    public void setUsersID(int usersID) {
-        this.usersID = usersID;
-    }
 }

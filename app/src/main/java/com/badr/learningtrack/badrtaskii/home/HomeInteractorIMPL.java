@@ -1,10 +1,12 @@
 package com.badr.learningtrack.badrtaskii.home;
 
-import com.badr.learningtrack.badrtaskii.home.interfaces.HomeInteractor;
-import com.badr.learningtrack.badrtaskii.home.interfaces.OnCallFinishedListener;
-import com.badr.learningtrack.badrtaskii.model.networkmanager.NetWorkManager;
+import android.util.Log;
 
-import javax.inject.Inject;
+import com.badr.learningtrack.badrtaskii.home.interfaces.HomeInteractor;
+import com.badr.learningtrack.badrtaskii.home.listeners.OnCallFinishedLisener;
+import com.badr.learningtrack.badrtaskii.model.DAO.api_services.NetWorkManager;
+import com.badr.learningtrack.badrtaskii.model.DAO.database.DataBaseManager;
+import com.badr.learningtrack.badrtaskii.model.pojos.Result;
 
 /**
  * Created by ahmed-osama on 30/07/17.
@@ -12,27 +14,32 @@ import javax.inject.Inject;
 
 public class HomeInteractorIMPL implements HomeInteractor {
 
-    @Inject
-    NetWorkManager networkmanager;
+
+    private DataBaseManager dataBaseManager;
+
+    private NetWorkManager networkmanager;
 
     public HomeInteractorIMPL() {
-//        networkmanager = NetWorkManager.getInstance();
+        networkmanager = NetWorkManager.getInstance();
+        dataBaseManager=  new DataBaseManager();
     }
 
     @Override
-    public void getAllUsers(Boolean internetStatus, OnCallFinishedListener callback) {
+    public void getAllUsers(Boolean internetStatus, OnCallFinishedLisener callback) {
 
         /// if it is true get users from API .
         if(internetStatus)
         {
-            /// in the first time the app should save all the user in the database.
-            ////////////////////////DOUBY CHeck the message foo2.
+            Log.i("Hello", "Interactor ask the api service for a data and pass the call back from the presenter to the API manager----- 5 "+internetStatus);
+
             networkmanager.getDataFromAPI(callback);
         }
         /// if it is false get users from Database .
         else
         {
+            Log.i("Hello", "Getting data from the database----- 5"+internetStatus);
 
+            dataBaseManager.select(Result.class,callback);
         }
     }
 }

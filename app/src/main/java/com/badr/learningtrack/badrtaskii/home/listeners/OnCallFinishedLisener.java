@@ -1,4 +1,4 @@
-package com.badr.learningtrack.badrtaskii.home.listener;
+package com.badr.learningtrack.badrtaskii.home.listeners;
 
 import com.badr.learningtrack.badrtaskii.model.pojos.Result;
 
@@ -11,6 +11,5 @@ import java.util.List;
 public interface OnCallFinishedLisener {
 
     public void onSuccess(List<Result> results);
-
     public void onFailure(String error);
 }

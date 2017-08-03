@@ -1,14 +1,13 @@
-package com.badr.learningtrack.badrtaskii.home.presenter;
+package com.badr.learningtrack.badrtaskii.home;
 
 import android.util.Log;
 
 import com.badr.learningtrack.badrtaskii.home.interfaces.HomeInteractor;
 import com.badr.learningtrack.badrtaskii.home.interfaces.HomePresenter;
 import com.badr.learningtrack.badrtaskii.home.interfaces.HomeView;
-import com.badr.learningtrack.badrtaskii.home.interfaces.OnCallFinishedListener;
+import com.badr.learningtrack.badrtaskii.home.listeners.OnCallFinishedLisener;
 import com.badr.learningtrack.badrtaskii.model.pojos.Result;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,20 +32,26 @@ public class HomePresenterIMPL implements HomePresenter {
 
     @Override
     public void readyToGO(Boolean internetStatus) {
-        interactor.getAllUsers(internetStatus, new OnCallFinishedListener() {
+        /// Showing the progress Dialog.
+        Log.i("Hello", "presenter ask view to show progress bar ----- 2");
+
+//        view.showProgressDialog();
+        Log.i("Hello", "Presenter ask Interactor for the data nad send a Listener wth him  ----- 4");
+
+        interactor.getAllUsers(internetStatus, new OnCallFinishedLisener() {
             @Override
             public void onSuccess(List<Result> results) {
-                Log.d(TAG, "the lis have "+results.size()+"item .");
-                view.showUsersData((ArrayList<Result>) results);
+                view.showUsersData(results);
                 view.HideProgressDialog();
-                for (int i=0; i<results.size();i++){
-                    System.out.println("user email : "+results.get(i).getEmail());
-                }
             }
             @Override
             public void onFailure(String error) {
                 Log.d(TAG, "onFailure: " + error);
+
+                view.HideProgressDialog();
+                view.showAlert("Server is Down","Please try again latter");
             }
+
         });
     }
 }

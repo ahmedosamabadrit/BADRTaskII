@@ -4,40 +4,27 @@ package com.badr.learningtrack.badrtaskii.model.pojos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Picture {
+import io.realm.RealmObject;
+import io.realm.annotations.RealmClass;
+import lombok.Getter;
+import lombok.Setter;
+
+@RealmClass
+public class Picture extends RealmObject {
 
     @SerializedName("large")
     @Expose
+    @Setter
+    @Getter
     private String large;
     @SerializedName("medium")
     @Expose
+    @Setter
+    @Getter
     private String medium;
     @SerializedName("thumbnail")
     @Expose
+    @Setter
+    @Getter
     private String thumbnail;
-
-    public String getLarge() {
-        return large;
-    }
-
-    public void setLarge(String large) {
-        this.large = large;
-    }
-
-    public String getMedium() {
-        return medium;
-    }
-
-    public void setMedium(String medium) {
-        this.medium = medium;
-    }
-
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
 }
