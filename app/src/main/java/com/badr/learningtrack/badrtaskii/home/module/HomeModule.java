@@ -2,7 +2,6 @@ package com.badr.learningtrack.badrtaskii.home.module;
 
 import android.content.Context;
 
-import com.badr.learningtrack.badrtaskii.home.ConnectionDetector;
 import com.badr.learningtrack.badrtaskii.home.HomeInteractorIMPL;
 import com.badr.learningtrack.badrtaskii.home.HomePresenterIMPL;
 import com.badr.learningtrack.badrtaskii.home.dialogs.AlertDialogManager;
@@ -44,8 +43,4 @@ public class HomeModule {
         return new AlertDialogManager();
     }
 
-    @Provides
-    public ConnectionDetector provideConnectionDetector() {
-        return new ConnectionDetector(context);
-    }
 }

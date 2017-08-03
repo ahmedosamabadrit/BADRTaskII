@@ -1,7 +1,6 @@
 package com.badr.learningtrack.badrtaskii.home;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -27,16 +26,10 @@ import javax.inject.Inject;
 
 import me.kartikarora.potato.Potato;
 
-import static android.provider.Settings.ACTION_SETTINGS;
-
 public class HomeActivity extends AppCompatActivity implements HomeView {
 
     @Inject
     HomePresenter presenter;
-
-    // Connection detector class
-    @Inject
-    ConnectionDetector cd;
 
     @Inject
     AlertDialogManager custom_alertDialog_interface;
@@ -66,10 +59,10 @@ public class HomeActivity extends AppCompatActivity implements HomeView {
         pDialog.setCancelable(false);
 
         // Check if Internet present
-        isInternetPresent = cd.isConnectingToInternet();
+        isInternetPresent = Potato.potate(this).Utils().isInternetConnected();
 
         if (!isInternetPresent) {
-            Potato.potate(this).Notifications().showNotificationDefaultSound(getString(R.string.network_connection_error_title), getString(R.string.network_connection_error_message),R.id.icon_only,new Intent(ACTION_SETTINGS));
+            showAlert(getString(R.string.network_connection_error_title), getString(R.string.network_connection_error_message));
         }
         Log.i("Hello", "View is ready to go ------- 1 ");
         presenter.readyToGO(isInternetPresent);
